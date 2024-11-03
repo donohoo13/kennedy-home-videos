@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- General Meta -->
+		<title>SvelteKit Template</title>
+		<base href="/" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="application-name" content="" />
+		<meta name="author" content="Conner Donohoo" />
+		<meta name="company" content="" />
+		<meta name="theme-color" content="#8C271E" />
+		<meta
+			name="robots"
+			content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
+		/>
+		<meta name="googlebot-news" content="noindex, nofollow" />
+
+		<!-- Open Graph & Platform Meta -->
+		<meta property="og:site_name" content="" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:image" content="%sveltekit.assets%/og.jpg" />
+		<meta properly="og:logo" content="%sveltekit.assets%/og_logo.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:image" content="%sveltekit.assets%/og.jpg" />
+
+		<!-- SEO -->
+		<link rel="manifest" href="%sveltekit.assets%/favicon/site.webmanifest" />
+		<link rel="canonical" href="https://www." />
+		<link rel="icon" href="%sveltekit.assets%/favicon/favicon.png" />
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="%sveltekit.assets%/global.css" />
+
+		<!-- Favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="%sveltekit.assets%/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="%sveltekit.assets%/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="%sveltekit.assets%/favicon/favicon-16x16.png"
+		/>
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- FontAwesome -->
+		<script
+			defer
+			src="https://kit.fontawesome.com/e0bc1343d7.js"
+			crossorigin="anonymous"
+		></script>
+
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover" data-theme="light">
+		<script>
+			function setInitialTheme() {
+				const persisted = localStorage.getItem("theme");
+				if (persisted === "light" || persisted === "dark") {
+					// If the user has set a theme, use it
+					return (document.body.dataset.theme = persisted);
+				}
+
+				const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+				if (typeof mediaQuery.matches === "boolean") {
+					// If the user hasn't set a theme, use the system preference
+					return (document.body.dataset.theme = mediaQuery.matches ? "dark" : "light");
+				}
+
+				// Default to light theme
+				return (document.body.dataset.theme = "light");
+			}
+
+			setInitialTheme();
+		</script>
+
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
