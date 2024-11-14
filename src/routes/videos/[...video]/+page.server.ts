@@ -14,11 +14,19 @@ const client = new S3Client({
 
 export async function load({
 	params,
+	cookies,
 }: {
-	params: { video: string };
+	params: any;
+	cookies: any;
 }): Promise<{ signedUrl: string; video: string }> {
 	if (!params.video) {
-		error(404);
+		error(402, { message: "No video provided" });
+	}
+
+	const authenticated = cookies.get("authenticated");
+
+	if (!authenticated) {
+		error(401, { message: "Unauthorized" });
 	}
 
 	const command = new GetObjectCommand({
@@ -26,9 +34,14 @@ export async function load({
 		Key: params.video,
 	});
 
-	const signedUrl = await getSignedUrl(client, command, {
-		expiresIn: 3600, // 1 hour
-	});
+	try {
+		const signedUrl = await getSignedUrl(client, command, {
+			expiresIn: 3600, // 1 hour
+		});
 
-	return { signedUrl, video: params.video };
+		return { signedUrl, video: params.video };
+	} catch (err) {
+		console.error(`error :>>`, err);
+		error(404, { message: "Not Found" });
+	}
 }
