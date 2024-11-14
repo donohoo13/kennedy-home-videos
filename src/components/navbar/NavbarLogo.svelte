@@ -8,7 +8,7 @@
 	}
 </script>
 
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" {width} {height} viewBox="350 25 1570 560">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg" {width} {height} viewBox="310 35 1610 550">
 	<g>
 		<rect width="100%" height="100%" class="cls-text" mask="url(#mask)" />
 		<mask id="mask">
