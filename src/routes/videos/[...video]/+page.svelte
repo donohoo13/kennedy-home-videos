@@ -28,7 +28,9 @@
 		<i class="fa-solid fa-spinner fa-spin fa-2xl" />
 	{:then}
 		{#if data.signedUrl}
-			<video src={data.signedUrl} controls autoplay />
+			<video src={data.signedUrl} controls autoplay>
+				<track kind="captions" />
+			</video>
 		{/if}
 	{/await}
 </section>
