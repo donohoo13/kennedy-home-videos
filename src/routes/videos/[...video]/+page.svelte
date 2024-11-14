@@ -5,15 +5,15 @@
 </script>
 
 <svelte:head>
-	<title>Kennedy Home Videos</title>
-	<meta name="description" content="" />
-	<meta property="og:title" content="" />
-	<meta property="og:description" content="" />
-	<meta name="og:url" content="https://www." />
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:description" content="" />
-	<meta name="twitter:url" content="https://www." />
-	<meta name="keywords" content="" />
+	<title>Kennedy Home Videos | {data.video.split("/").pop()?.replace(".mp4", "")}</title>
+	<meta
+		property="og:title"
+		content="Kennedy Home Videos | {data.video.split('/').pop()?.replace('.mp4', '')}"
+	/>
+	<meta
+		name="twitter:title"
+		content="Kennedy Home Videos | {data.video.split('/').pop()?.replace('.mp4', '')}"
+	/>
 </svelte:head>
 
 <section class="container section-spacing">
