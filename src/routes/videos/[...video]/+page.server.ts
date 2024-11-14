@@ -1,8 +1,5 @@
-import {
-	AWS_BUCKET_ACCESS_KEY,
-	AWS_BUCKET_SECRET_KEY,
-	AWS_BUCKET_REGION,
-} from "$env/static/private";
+import { env } from "$env/dynamic/private";
+import { AWS_BUCKET_REGION } from "$env/static/private";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { error } from "@sveltejs/kit";
@@ -10,8 +7,8 @@ import { error } from "@sveltejs/kit";
 const client = new S3Client({
 	region: AWS_BUCKET_REGION,
 	credentials: {
-		accessKeyId: AWS_BUCKET_ACCESS_KEY,
-		secretAccessKey: AWS_BUCKET_SECRET_KEY,
+		accessKeyId: env.AWS_BUCKET_ACCESS_KEY,
+		secretAccessKey: env.AWS_BUCKET_SECRET_KEY,
 	},
 });
 

@@ -1,8 +1,5 @@
-import {
-	AWS_BUCKET_ACCESS_KEY,
-	AWS_BUCKET_SECRET_KEY,
-	AWS_BUCKET_REGION,
-} from "$env/static/private";
+import { env } from "$env/dynamic/private";
+import { AWS_BUCKET_REGION } from "$env/static/private";
 import {
 	S3Client,
 	ListObjectsV2Command,
@@ -12,8 +9,8 @@ import {
 const client = new S3Client({
 	region: AWS_BUCKET_REGION,
 	credentials: {
-		accessKeyId: AWS_BUCKET_ACCESS_KEY,
-		secretAccessKey: AWS_BUCKET_SECRET_KEY,
+		accessKeyId: env.AWS_BUCKET_ACCESS_KEY,
+		secretAccessKey: env.AWS_BUCKET_SECRET_KEY,
 	},
 });
 
