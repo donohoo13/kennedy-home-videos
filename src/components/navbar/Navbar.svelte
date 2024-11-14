@@ -6,6 +6,7 @@
 	import NavbarMobileMenuButton from "./NavbarMobileMenuButton.svelte";
 	import { isMobileMenuOpen, toggleMobileMenu } from "$stores/mobile-menu.store";
 	import ButtonLink from "$components/common/ButtonLink.svelte";
+	import MobileLogo from "$assets/logos/primary/kennedy_home_videos_primary_md_t.png";
 </script>
 
 <header class="full-width-container navigation">
@@ -18,10 +19,10 @@
 			<nav class="desktop-menu-navigation">
 				<ul>
 					<li>
-						<ButtonLink size="sm" href="/" variant="text">Home</ButtonLink>
+						<ButtonLink size="sm" href="/videos" variant="text">Videos</ButtonLink>
 					</li>
 					<li>
-						<ButtonLink size="sm" href="/contact" variant="text">Contact</ButtonLink>
+						<ButtonLink size="sm" href="/images" variant="text">Images</ButtonLink>
 					</li>
 				</ul>
 			</nav>
@@ -45,55 +46,36 @@
 								<button
 									class="mobile-menu-link"
 									role="link"
-									on:click={() => toggleMobileMenu("/")}
+									on:click={() => toggleMobileMenu("/videos")}
 								>
 									<i
 										style="margin-right: 1rem;"
-										class="fa-regular fa-house fa-lg"
+										class="fa-regular fa-video fa-lg"
 									/>
-									Home
+									Videos
 								</button>
 							</li>
 							<li>
 								<button
 									class="mobile-menu-link"
 									role="link"
-									on:click={() => toggleMobileMenu("/contact")}
+									on:click={() => toggleMobileMenu("/images")}
 								>
 									<i
 										style="margin-right: 1rem;"
-										class="fa-regular fa-envelope fa-lg"
+										class="fa-regular fa-image fa-lg"
 									/>
-									Contact
+									Images
 								</button>
 							</li>
 						</ul>
 					</nav>
 
 					<div class="mobile-menu-divider">
-						<div></div>
+						<div>
+							<img src={MobileLogo} alt="The Kennedy Family" />
+						</div>
 					</div>
-
-					<footer class="mobile-menu-footer">
-						<ul>
-							<li>
-								<button
-									class="mobile-menu-link"
-									role="link"
-									on:click={() => toggleMobileMenu("terms-of-use")}
-									>Terms of Use</button
-								>
-							</li>
-							<li>
-								<button
-									class="mobile-menu-link"
-									role="link"
-									on:click={() => toggleMobileMenu("privacy-policy")}
-									>Privacy Policy</button
-								>
-							</li>
-						</ul>
-					</footer>
 				</div>
 			{/if}
 		</div>
@@ -262,31 +244,6 @@
 	:global([data-theme="dark"]) .mobile-menu-divider {
 		& > svg {
 			filter: drop-shadow(0 0 5rem hsl(from var(--clr-secondary) h s l / 0.5));
-		}
-	}
-
-	.mobile-menu-footer {
-		padding-inline: 2rem;
-		margin-bottom: 1rem;
-
-		@media screen and (min-width: 480px) {
-			padding-inline: 4rem;
-		}
-
-		& ul {
-			list-style: none;
-			padding-inline: 0;
-			display: flex;
-			justify-content: space-between;
-		}
-
-		& button {
-			color: var(--clr-text);
-			background-color: transparent;
-			border: none;
-			cursor: pointer;
-			font-size: 1.2rem;
-			font-weight: 500;
 		}
 	}
 </style>

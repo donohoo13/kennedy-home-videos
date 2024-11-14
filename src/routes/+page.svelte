@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Kennedy Home Videos</title>
 	<meta name="description" content="" />
 	<meta property="og:title" content="" />
 	<meta property="og:description" content="" />
@@ -16,8 +16,8 @@
 
 <section class="container section-spacing">
 	<header>
-		<h1 id="welcome">Welcome to SvelteKit Template</h1>
-		<p class="subtitle">Built with SvelteKit, CSS and Vite.</p>
+		<h1 id="welcome">Welcome to Kennedy Home Videos</h1>
+		<p class="subtitle">A collection of videos and images from the Kennedy family.</p>
 		<ButtonLink class="test" href="/about">Learn More</ButtonLink>
 	</header>
 </section>

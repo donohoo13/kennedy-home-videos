@@ -6,8 +6,8 @@
 <footer class="full-width-container main-footer section-spacing">
 	<div class="container">
 		<div class="logo-section">
-			<LogoSolid height={40} />
-			<p class="catch-phrase"><em>Slogan</em></p>
+			<LogoSolid height={60} />
+			<p class="catch-phrase"><em>Kennedy Home Videos</em></p>
 		</div>
 
 		<div class="navigation">
@@ -18,16 +18,6 @@
 				</li>
 				<li>
 					<a href="/">Contact</a>
-				</li>
-			</ul>
-
-			<ul>
-				<p>Resources</p>
-				<li>
-					<a href="/terms-of-use">Terms of Use</a>
-				</li>
-				<li>
-					<a href="/privacy-policy">Privacy Policy</a>
 				</li>
 			</ul>
 		</div>
@@ -54,19 +44,6 @@
 					</a>
 				</li>
 			</ul>
-
-			<!-- ---- Attribution ---- -->
-			<small class="attribution">
-				Vectors designed by
-				<a
-					href="https://www.freepik.com/author/stories"
-					title="Storyset"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Storyset
-				</a>
-			</small>
 
 			<!-- ---- Copyright ---- -->
 			<small>
@@ -99,6 +76,9 @@
 	}
 
 	.logo-section {
+		--clr-primary: var(--clr-white);
+		--clr-bg: hsl(5 65% 33%);
+
 		@media (min-width: 768px) {
 			grid-column: 1/-1;
 			order: 1;
