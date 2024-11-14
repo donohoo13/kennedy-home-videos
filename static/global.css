@@ -112,6 +112,10 @@ h1,
 h2,
 h3 {
 	font-weight: 700;
+
+	&:not(:has(+ .subtitle)) {
+		margin-bottom: 0;
+	}
 }
 
 h1,
@@ -120,8 +124,8 @@ h3,
 h4,
 h5,
 h6 {
+	margin-block: 0.6em;
 	line-height: 1.2;
-	margin-bottom: 0.65em;
 }
 
 h1 {
@@ -268,6 +272,7 @@ form {
 }
 
 .content-grid {
+	height: 100%;
 	display: grid;
 	grid-template-columns:
 		[full-width-start] 1fr [breakout-start] 50px

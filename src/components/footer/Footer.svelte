@@ -14,10 +14,10 @@
 			<ul>
 				<p>Navigation</p>
 				<li>
-					<a href="/">Home</a>
+					<a href="/videos">Videos</a>
 				</li>
 				<li>
-					<a href="/">Contact</a>
+					<a href="/images">Images</a>
 				</li>
 			</ul>
 		</div>
