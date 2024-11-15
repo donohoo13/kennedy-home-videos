@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { enhance } from "$app/forms";
 	import Button from "$components/common/Button.svelte";
+	import { page } from "$app/stores";
+	console.log(`page :>>`, $page);
 
 	export let form;
 </script>
@@ -19,7 +21,7 @@
 </section>
 
 <section class="container section-spacing">
-	<form class="form" method="POST" use:enhance>
+	<form class="form" method="POST" action="/authenticate?/authenticate" use:enhance>
 		<div class="form-group">
 			<label for="password">
 				<span> Password </span>
@@ -30,6 +32,12 @@
 					value=""
 					name="password"
 					required
+				/>
+
+				<input
+					type="hidden"
+					name="redirect"
+					value={$page.url.searchParams.get("redirect")}
 				/>
 			</label>
 		</div>

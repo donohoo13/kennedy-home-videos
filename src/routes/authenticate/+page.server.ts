@@ -4,7 +4,14 @@ import { fail, redirect } from "@sveltejs/kit";
 const PASSWORD = env.AUTH_PASSWORD;
 
 export const actions = {
-	default: async ({ request, params, cookies }) => {
+	load: async ({ cookies }) => {
+		const authenticated = cookies.get("authenticated");
+
+		if (authenticated) {
+			return redirect(302, "/");
+		}
+	},
+	authenticate: async ({ request, cookies, url }) => {
 		const data = await request.formData();
 
 		if (data.get("password") !== PASSWORD) {
@@ -19,8 +26,9 @@ export const actions = {
 			});
 		}
 
-		if (params.redirect) {
-			return redirect(302, params.redirect);
+		const redirectValue = data.get("redirect");
+		if (redirectValue) {
+			return redirect(302, redirectValue);
 		} else {
 			return redirect(302, "/");
 		}
