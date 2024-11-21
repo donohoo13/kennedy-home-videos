@@ -2,6 +2,21 @@
 	import ButtonLink from "$components/common/ButtonLink.svelte";
 
 	export let data;
+
+	const capitalize = (str: string) => str.replace(/^[a-z]/, (p) => p.toUpperCase());
+	const getPeople = (tags: { Key: string; Value: string }[]) => {
+		const people =
+			tags
+				.find((tag) => tag.Key === "people")
+				?.Value.split("_")
+				.map(capitalize)
+				.join(", ") ?? "";
+		return people;
+	};
+	const getDate = (tags: { Key: string; Value: string }[]) => {
+		const date = tags.find((tag) => tag.Key === "date")?.Value;
+		return date ? new Date(date).toLocaleDateString() : "";
+	};
 </script>
 
 <svelte:head>
@@ -25,14 +40,17 @@
 				<thead>
 					<tr>
 						<th>Video</th>
-						<th>Added</th>
+						<th>People</th>
+						<th>Date</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				{#each data.videos as video}
 					<tr>
 						<td>{video.Key?.split(".mp4")[0].split("/").pop()}</td>
-						<td>{new Date(video.LastModified ?? "").toLocaleDateString()}</td>
+						<!-- <td>{new Date(video.LastModified ?? "").toLocaleDateString()}</td> -->
+						<td>{getPeople(video.Tags)}</td>
+						<td>{getDate(video.Tags)}</td>
 						<td>
 							<ButtonLink href={`/videos/${encodeURIComponent(video.Key ?? "")}`}>
 								View

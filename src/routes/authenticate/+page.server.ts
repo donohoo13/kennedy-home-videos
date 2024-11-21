@@ -11,7 +11,7 @@ export const actions = {
 			return redirect(302, "/");
 		}
 	},
-	authenticate: async ({ request, cookies, url }) => {
+	authenticate: async ({ request, cookies }) => {
 		const data = await request.formData();
 
 		if (data.get("password") !== PASSWORD) {
