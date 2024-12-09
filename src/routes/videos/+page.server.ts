@@ -18,6 +18,7 @@ const client = new S3Client({
 
 export async function load(): Promise<{
 	videos: { Key: string; LastModified: string; Tags: { Key: string; Value: string }[] }[];
+	filteredVideos: { Key: string; LastModified: string; Tags: { Key: string; Value: string }[] }[];
 }> {
 	const command = new ListObjectsV2Command({
 		Bucket: "kennedy-home-videos",
@@ -48,5 +49,5 @@ export async function load(): Promise<{
 
 	await Promise.all(videoTagsPromises);
 
-	return { videos };
+	return { videos, filteredVideos: videos };
 }
