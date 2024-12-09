@@ -90,11 +90,14 @@
 		align-items: center;
 		gap: 0.5em;
 		margin-bottom: 1em;
+		position: sticky;
+		top: calc(var(--nav-height) + 0.25em);
+		z-index: 10;
 	}
 
 	input {
 		width: 100%;
-		padding: 0.5em;
+		padding: 1em;
 		border-radius: 0.5em;
 		border: 2px solid hsl(from var(--clr-accent) h s l / 0.2);
 	}
@@ -135,6 +138,7 @@
 		overflow: hidden;
 		align-items: center;
 		justify-content: center;
+		z-index: 20;
 
 		& img {
 			width: 100%;

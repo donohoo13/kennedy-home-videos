@@ -193,6 +193,9 @@
 	}
 
 	label {
+		position: sticky;
+		top: calc(var(--nav-height) + 0.25em);
+		z-index: 10;
 		display: flex;
 		align-items: center;
 		gap: 0.5em;
@@ -201,7 +204,7 @@
 
 	input {
 		width: 100%;
-		padding: 0.5em;
+		padding: 1em;
 		border-radius: 0.5em;
 		border: 2px solid hsl(from var(--clr-accent) h s l / 0.2);
 	}
