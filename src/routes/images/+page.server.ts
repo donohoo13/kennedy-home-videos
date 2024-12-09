@@ -20,7 +20,8 @@ const client = new S3Client({
 });
 
 export async function load({ cookies }: { cookies: any }): Promise<{
-	images: string[];
+	images: { signedUrl: string; key: string }[];
+	filteredImages: { signedUrl: string; key: string }[];
 	// images: {
 	// 	Key: string;
 	// 	LastModified: string;
@@ -63,14 +64,14 @@ export async function load({ cookies }: { cookies: any }): Promise<{
 				{
 					expiresIn: 3600, // 1 hour
 				}
-			)
+			).then((signedUrl) => ({
+				signedUrl,
+				key: content.Key,
+			}))
 		);
 	});
 
 	const images = await Promise.all(imagePromises);
 
-	console.log(`images :>>`, images);
-
-	// return { images, filteredImages: [...images] };
-	return { images };
+	return { images, filteredImages: [...images] };
 }

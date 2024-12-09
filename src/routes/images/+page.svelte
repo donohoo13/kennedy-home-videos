@@ -5,15 +5,15 @@
 	let search = "";
 	let selectedImage: string | null = null;
 
-	// $: {
-	// 	if (search) {
-	// 		data.filteredImages = data.images.filter((image) =>
-	// 			image.Key.toLowerCase().includes(search.toLowerCase())
-	// 		);
-	// 	} else {
-	// 		data.filteredImages = data.images;
-	// 	}
-	// }
+	$: {
+		if (search) {
+			data.filteredImages = data.images.filter((image) =>
+				image.key.toLowerCase().includes(search.toLowerCase())
+			);
+		} else {
+			data.filteredImages = data.images;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -37,13 +37,15 @@
 				<input type="search" placeholder="Search" bind:value={search} />
 			</label>
 			<div class="grid">
-				{#each data.images as image}
+				{#each data.filteredImages as image}
 					<img
-						src={image}
-						alt={image}
+						src={image.signedUrl}
+						alt={image.key}
 						loading="lazy"
+						width={400}
+						height={400}
 						on:click={() => {
-							selectedImage = image;
+							selectedImage = image.signedUrl;
 						}}
 					/>
 				{/each}
@@ -68,12 +70,14 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		justify-content: center;
+		align-items: center;
 		gap: 1em;
 		overflow: hidden;
 
 		@media (min-width: 768px) {
-			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 		}
 	}
 
