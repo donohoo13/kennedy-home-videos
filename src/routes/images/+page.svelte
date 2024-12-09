@@ -1,9 +1,13 @@
 <script lang="ts">
 	import ButtonLink from "$components/common/ButtonLink.svelte";
+	import Tooltip from "$components/common/Tooltip.svelte";
 
 	export let data;
 	let search = "";
-	let selectedImage: string | null = null;
+	let selectedImage: {
+		signedUrl: string;
+		key: string;
+	} | null = null;
 
 	$: {
 		if (search) {
@@ -38,16 +42,18 @@
 			</label>
 			<div class="grid">
 				{#each data.filteredImages as image}
-					<img
-						src={image.signedUrl}
-						alt={image.key}
-						loading="lazy"
-						width={400}
-						height={400}
-						on:click={() => {
-							selectedImage = image.signedUrl;
-						}}
-					/>
+					<Tooltip text={image.key.split("/").pop()?.replace(".webp", "") ?? ""}>
+						<img
+							src={image.signedUrl}
+							alt={image.key}
+							loading="lazy"
+							width={400}
+							height={400}
+							on:click={() => {
+								selectedImage = image;
+							}}
+						/>
+					</Tooltip>
 				{/each}
 			</div>
 		{/if}
@@ -55,7 +61,8 @@
 </section>
 
 <dialog open={selectedImage !== null}>
-	<img src={selectedImage} alt={selectedImage} />
+	<h2>{selectedImage?.key.split("/").pop()?.replace(".webp", "") ?? ""}</h2>
+	<img src={selectedImage?.signedUrl} alt={selectedImage?.key} />
 	<button
 		on:click={() => {
 			selectedImage = null;
@@ -99,10 +106,10 @@
 		width: 100%;
 		padding: 1em;
 		border-radius: 0.5em;
-		border: 2px solid hsl(from var(--clr-accent) h s l / 0.2);
+		border: 2px solid hsl(from var(--clr-accent) h s l / 0.8);
 	}
 
-	.grid > img {
+	.grid img {
 		width: 100%;
 		max-height: 75dvh;
 		height: auto;
@@ -140,10 +147,16 @@
 		justify-content: center;
 		z-index: 20;
 
+		& h2 {
+			font-size: 2.25rem;
+			font-weight: bold;
+			text-align: center;
+		}
+
 		& img {
 			width: 100%;
 			height: auto;
-			max-height: calc(100dvh - var(--nav-height) - 6em);
+			max-height: calc(100dvh - var(--nav-height) - 10em);
 			border-radius: 0.5em;
 			object-fit: contain;
 			border-radius: 0.5em;
