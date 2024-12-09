@@ -66,6 +66,10 @@
 <style scoped>
 	:global(body:has(dialog[open])) {
 		overflow: hidden;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: none;
+		overscroll-behavior: none;
 	}
 
 	.grid {
@@ -120,7 +124,6 @@
 		padding: 20px;
 		background-color: hsl(from var(--clr-accent) h s l / 0.1);
 		backdrop-filter: blur(2rem);
-		/* border: 1px solid var(--clr-accent); */
 		border: none;
 		display: flex;
 		flex-direction: column;
